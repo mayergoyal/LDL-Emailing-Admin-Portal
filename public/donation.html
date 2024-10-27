@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donation</title>
+</head>
+<style>
+  .user-table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+    background-color: rgb(156, 204, 110);
+    
+  }
+
+  .user-table th, .user-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+
+  .user-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+
+  .user-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+
+  .user-table tr:hover {
+    background-color: #ddd;
+  }
+  body{
+    background: url('./images/Red Green Orange Colorful Handprint Illustration T-shirt.png');
+  }
+  .mainheading{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  }
+  .mainheading h1{
+    font-family: cursive;
+    font-size: 2.5rem;
+    background-color: rgba(156, 204, 110,.4);
+  }
+</style>
+
+<body>
+    <div class="mainheading">
+        <h1>DONATION LDL -JIIT</h1>
+    </div>
+</body>
+<script>
+    function fetchuser(){
+        fetch('http://localhost:5000/users').then(response=>response.json())
+        .then(users=>{
+             displayusers(users);
+
+        })
+        .catch(error=>console.error('error ',error));
+    }
+   function displayusers(users) {
+  // Create a table element
+  const table = document.createElement('table');
+  table.classList.add('user-table');
+
+  // Create the header row
+  const headerRow = `
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Donation Amount</th>
+        <th> Time </th>
+      </tr>
+    </thead>
+  `;
+
+  // Create table body to hold user rows
+  let tableBody = '<tbody>';
+  
+  users.forEach(user => {
+   const createdAt = new Date(user.createdAt).toLocaleString();
+    tableBody += `
+      <tr>
+        <td>${user.name}</td>
+        <td>${user.email}</td>
+        <td>${user.donationAmount}</td>
+        <td>${createdAt}</td>
+      </tr>
+    `;
+  });
+
+  tableBody += '</tbody>';
+
+  // Combine header and body into the table
+  table.innerHTML = headerRow + tableBody;
+
+  // Append the table to the body or a specific element
+  document.body.appendChild(table);
+}
+// Fetch users when the page loads
+  window.onload = fetchuser;
+</script>
+</html>

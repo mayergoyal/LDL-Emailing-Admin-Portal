@@ -1,0 +1,159 @@
+<!-- public/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>NGO Donation Appreciation</title>
+  </head>
+  <style>
+    /* public/styles.css */
+    body{
+        background: url('./images/Red Green Orange Colorful Handprint Illustration T-shirt.png');
+    }
+    .containerbody {
+      font-family: Arial, sans-serif;
+      
+      display: flex;
+      
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      
+    }
+
+    .container {
+      background-color: rgb(141, 202, 20);
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      margin:10px;
+      padding: 10px;
+      height:300px;
+      overflow-y: scroll;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      margin-bottom: 5px;
+    }
+
+    input {
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button {
+      padding: 10px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #218838;
+    }
+    .mainheading {
+      
+      width: 100%;
+      color: rgb(5, 4, 4);
+      display: flex;
+      margin-top: 0;
+      padding-top: 0;
+      margin:0;
+      padding:0;
+      font-size: 2.2rem;
+      border-bottom: black solid 1px;
+    }
+    .mainheading img {
+      width: 100px;
+      height: auto;
+    }
+    .mainheading h1 {
+      margin: 20px;
+      background-color: rgba(149, 98, 98, 0.478);
+      
+    }
+  </style>
+  <body>
+    <div class="mainheading">
+         <h1>LDL JIIT DONATION ADMIN PORTAL</h1>
+      <img
+        src="https://www.lightdeliteracy.com/wp-content/uploads/2017/05/logo-image.png"
+        alt=""
+      />
+     
+    </div>
+    <div class="containerbody">
+      <div class="container">
+      <h1>Send Appreciation Email</h1>
+      <form id="emailForm">
+        <label for="name">Donor's Name:</label>
+        <input type="text" id="name" name="name" required />
+
+        <label for="email">Donor's Email:</label>
+        <input type="email" id="email" name="email" required />
+         <label for="amount">Enter Amount</label>
+        <input type="number" id="amount" required>
+         <label for="date">Enter Date</label>
+        <input type="date">
+        <button id="subbutton" type="submit">Send Email</button>
+       </form>
+       </div>
+       <div class="container" style="background-color: darkorange;">
+<h1>Check Donation Details</h1>
+<a href="donation.html"><button id="checkbutton" type="submit">check !!</button></a>
+ 
+
+       </div>
+       <div class="container" style="background-color: rgb(226, 18, 146);">
+             <h1>Meet the JIIT Team </h1>
+             <button id="meetbutton" type="submit">Meet the Team</button>
+       </div>
+    </div>
+    
+   
+  </body>
+</html>
+<script>
+ document.getElementById("subbutton").addEventListener("click", function (e) {
+  e.preventDefault(); // Prevents the form from submitting the traditional way
+  const name = document.getElementById("name").value;
+  const email = document.getElementById("email").value;
+  const amount = document.getElementById("amount").value;
+  // Correct the data object to match the backend
+  const data = {
+    name: name,
+    email: email,
+    donationAmount:amount,
+  };
+  
+  // Sending request to the server
+  fetch("http://localhost:5000/sendemail", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data), // Corrected: body should be a JSON string
+  })
+  .then((response) => response.text())
+  .then((data) => {
+    console.log(data); // Success response
+    alert('Email sent successfully');
+  })
+  .catch((error) => {
+    console.error("Error:", error);
+    alert('Error sending email');
+  });
+});
+
+</script>
