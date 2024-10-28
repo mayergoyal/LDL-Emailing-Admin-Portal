@@ -4,6 +4,7 @@ const nodemailer=require("nodemailer");
 const cors=require("cors");
 const app=express();
 app.use(cors());
+require("dotenv").config();
 app.use(bodyparser.urlencoded({extended:true})); //this is for body parsing the request body in readble form , this urlencoded means whatever the url is fetching the data in encoded format , extended parameter is used for handling complex data structures like nested objects , but is extended is set to be false then it takes only key value pairs into consideration
 //app.use(express.static('public')); //serve static html files from the public folder
 app.use(bodyparser.json())
