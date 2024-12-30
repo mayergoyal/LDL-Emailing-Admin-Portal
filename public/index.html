@@ -6,32 +6,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>NGO Donation Appreciation</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="aboutldl.css" />
   </head>
   <style>
     /* public/styles.css */
-    body{
-        background: url('./images/Red Green Orange Colorful Handprint Illustration T-shirt.png');
+    /* body {
+      background: url("./images/Red Green Orange Colorful Handprint Illustration T-shirt.png");
+    }*/
+    body {
+      overflow-x: hidden;
     }
     .containerbody {
       font-family: Arial, sans-serif;
-      
+
       display: flex;
-      
+
       justify-content: center;
       align-items: center;
       height: 100vh;
-      
+
+      padding: 0;
+      margin: 0;
+      border: 0;
+      background: url("./images/LDL JIIT (1).png");
     }
 
     .container {
-      background-color: rgb(141, 202, 20);
+      background: linear-gradient(45deg, #a8ff78, #78ffd6);
       padding: 20px;
       border-radius: 8px;
       box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-      margin:10px;
+      margin: 10px;
       padding: 10px;
-      height:300px;
+      height: 300px;
       overflow-y: scroll;
+      border-radius: 5%;
     }
 
     form {
@@ -63,14 +76,13 @@
       background-color: #218838;
     }
     .mainheading {
-      
       width: 100%;
       color: rgb(5, 4, 4);
       display: flex;
       margin-top: 0;
       padding-top: 0;
-      margin:0;
-      padding:0;
+      margin: 0;
+      padding: 0;
       font-size: 2.2rem;
       border-bottom: black solid 1px;
     }
@@ -81,79 +93,1224 @@
     .mainheading h1 {
       margin: 20px;
       background-color: rgba(149, 98, 98, 0.478);
-      
+    }
+    #color1,
+    #color2,
+    #color3,
+    #color4 {
+      display: inline-block;
+      background-color: green;
+      height: 40px;
+    }
+
+    .contents {
+      clear: both;
+    }
+    .dropdown {
+      height: 100vh;
+    }
+    #home,
+    #next,
+    #another,
+    #more {
+      box-shadow: 10px 5px 5px lightGray;
+      display: none;
+    }
+
+    p {
+      text-align: center;
+      line-height: 70px;
+    }
+    /* dropdown content */
+    #color1 {
+      border-bottom: 12px solid #66d5f3;
+    }
+    #color1:hover {
+      background: #66d5f3;
+      color: green;
+    }
+
+    #home {
+      background: #66d5f3;
+    }
+
+    #color2 {
+      border-bottom: 12px solid rgb(242, 210, 218);
+    }
+
+    #color2:hover {
+      background: rgb(242, 210, 218);
+      color: white;
+    }
+
+    #next {
+      background-color: rgb(242, 210, 218);
+    }
+
+    #color3 {
+      border-bottom: 12px solid #3ec9a7;
+    }
+
+    #color3:hover {
+      background: #3ec9a7;
+      color: #616668;
+    }
+
+    #another {
+      background: #3ec9a7;
+    }
+
+    #color4 {
+      border-bottom: 12px solid #fff7e2;
+    }
+
+    #color4:hover {
+      background: #fff7e2;
+      color: #616668;
+    }
+
+    #more {
+      background: #fff7e2;
+    }
+
+    /******************/
+
+    .text {
+      text-align: left;
+      margin-left: 20px;
+      font-size: 20px;
+      position: static;
+      color: black;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 50px;
+      font-family: "Comfortaa", cursive;
+      color: black;
+    }
+
+    hr {
+      width: 40%;
+      border-color: black;
+      border-width: 4px;
+    }
+    .homeheropic {
+      margin: 0;
+      padding: 0;
+      display: inline-block;
+      vertical-align: top;
+    }
+
+    .heroimg {
+      width: 100vw;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      height: 88vh;
+      justify-content: center;
+      display: inline-block;
+      vertical-align: top;
+    }
+    .a {
+      font-size: medium;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+    nav {
+      display: flex;
+      flex-flow: wrap;
+      justify-content: space-evenly;
+      cursor: pointer;
+    }
+    .fa-heart {
+      justify-content: center;
+      align-items: center;
+      border-radius: 20%;
+      border: 8px solid rgb(255, 255, 255);
+      background-color: white;
+    }
+  </style>
+  <style id="dynamicbody">
+    body {
+      background-color: #66d5f3;
     }
   </style>
   <body>
-    <div class="mainheading">
-         <h1>LDL JIIT DONATION ADMIN PORTAL</h1>
-      <img
-        src="https://www.lightdeliteracy.com/wp-content/uploads/2017/05/logo-image.png"
-        alt=""
-      />
-     
-    </div>
-    <div class="containerbody">
-      <div class="container">
-      <h1>Send Appreciation Email</h1>
-      <form id="emailForm">
-        <label for="name">Donor's Name:</label>
-        <input type="text" id="name" name="name" required />
+    <section class="intro" id="intro">
+      <section class="balloons-conatiner" id="balloons-container">
+        <div class="balloon yellow"></div>
+        <div class="balloon blue"></div>
+        <div class="balloon purple"></div>
+        <div class="balloon red"></div>
+        <div class="balloon cyan"></div>
+        <!-- infinite-->
+        <div class="balloon pink"></div>
+        <div class="balloon orange"></div>
+        <div class="balloon blue"></div>
+        <div class="balloon yellow"></div>
+        <div class="balloon purple"></div>
+        <div class="balloon green"></div>
+        <div class="balloon cyan"></div>
+        <div class="balloon red"></div>
+      </section>
+    </section>
+    <!-- Hover works until selected-->
+    <nav>
+      <div onclick="homeFunction()" id="color1" class="col-xs-3">
+        <i class="fa-solid fa-house"> --Home </i>
+      </div>
+      <div onclick="nextFunction()" id="color2" class="col-xs-3">
+        <i class="fa-solid fa-circle-info">--About LDL</i>
+      </div>
+      <div onclick="anotherFunction()" id="color3" class="col-xs-3">
+        <i class="fa-solid fa-user-group">--Team</i>
+      </div>
+      <div onclick="moreFunction()" id="color4" class="col-xs-3">
+        <i class="fa-solid fa-user">--Admin</i>
+      </div>
+    </nav>
+    <div class="contents">
+      <div class="dropdown" id="home">
+        <br />
+        <div class="homeheropic">
+          <img class="heroimg" src=".\images\LDL JIIT.png" alt="not found" />
+        </div>
+        <div class="containerbody">
+          <div class="container">
+            <h1>
+              <i class="fa-regular fa-heart fa-1x"></i> Send Appreciation Email
+            </h1>
+            <form id="emailForm">
+              <label for="name">Donor's Name:</label>
+              <input type="text" id="name" name="name" required />
 
-        <label for="email">Donor's Email:</label>
-        <input type="email" id="email" name="email" required />
-         <label for="amount">Enter Amount</label>
-        <input type="number" id="amount" required>
-         <label for="date">Enter Date</label>
-        <input type="date">
-        <button id="subbutton" type="submit">Send Email</button>
-       </form>
-       </div>
-       <div class="container" style="background-color: darkorange;">
-<h1>Check Donation Details</h1>
-<a href="donation.html"><button id="checkbutton" type="submit">check !!</button></a>
- 
+              <label for="email">Donor's Email:</label>
+              <input type="email" id="email" name="email" required />
+              <label for="amount">Enter Amount</label>
+              <input type="number" id="amount" required />
+              <label for="date">Enter Date</label>
+              <input type="date" />
+              <button id="subbutton" type="submit">Send Email</button>
+            </form>
+          </div>
+          <div class="container" style="background-color: darkorange">
+            <h1>Check Donation Details</h1>
+            <a href="donation.html"
+              ><button id="checkbutton" type="submit">check !!</button></a
+            >
+          </div>
+        </div>
+        <hr />
+      </div>
+      <div class="dropdown" id="next">
+        <br />
+        <div id="aboutldl"></div>
 
-       </div>
-       <div class="container" style="background-color: rgb(226, 18, 146);">
-             <h1>Meet the JIIT Team </h1>
-             <button id="meetbutton" type="submit">Meet the Team</button>
-       </div>
+        <p class="text"></p>
+      </div>
+      <div class="dropdown" id="another">
+        <br />
+        <h1>Team</h1>
+        <hr />
+        <p class="text"></p>
+      </div>
+      <div class="dropdown" id="more">
+        <br />
+        <div id="admin"></div>
+        <hr />
+        <p class="text"></p>
+      </div>
     </div>
-    
-   
   </body>
 </html>
-<script>
- document.getElementById("subbutton").addEventListener("click", function (e) {
-  e.preventDefault(); // Prevents the form from submitting the traditional way
-  const name = document.getElementById("name").value;
-  const email = document.getElementById("email").value;
-  const amount = document.getElementById("amount").value;
-  // Correct the data object to match the backend
-  const data = {
-    name: name,
-    email: email,
-    donationAmount:amount,
-  };
-  
-  // Sending request to the server
-  fetch("http://localhost:5000/sendemail", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data), // Corrected: body should be a JSON string
-  })
-  .then((response) => response.text())
-  .then((data) => {
-    console.log(data); // Success response
-    alert('Email sent successfully');
-  })
-  .catch((error) => {
-    console.error("Error:", error);
-    alert('Error sending email');
-  });
-});
+<style>
+  @import url(https://fonts.googleapis.com/css?family=Raleway);
+  /*------------------------------------*\
+            Balloon Colours 
 
+        yellow:   rgb(235,255, 20); 
+        blue      rgb( 39, 20,255);
+        purple:   rgb(189, 96,255);
+        red:      rgb(255, 39, 20);
+        cyan      rgb( 20,235,255);
+        pink:     rgb(255,138,187);
+        green:    rgb( 20,189, 34); 
+        orange:   rgb(255,171, 53);
+
+\*------------------------------------*/
+
+  .intro {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-justify-content: center;
+    -ms-justify-content: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    -ms-align-items: center;
+    align-items: center;
+    pointer-events: none; /* Disable pointer events */
+    z-index: 1; /* Ensure it doesn't block higher z-index elements */
+  }
+
+  h1 {
+    font: 1.8rem/1.6em "Raleway", sans-serif;
+
+    font-weight: bold;
+    letter-spacing: 0.02em;
+    text-align: center;
+    color: rgba(51, 51, 51, 1);
+  }
+
+  @media all and (min-width: 30em) and (max-width: 47em) {
+    h1 {
+      font-size: 2.4rem;
+    }
+  }
+  @media all and (min-width: 47em) {
+    h1 {
+      font-size: 3.2rem;
+    }
+  }
+  @media all and (min-width: 70em) {
+    h1 {
+      font-size: 2.8rem;
+    }
+  }
+  @media all and (min-width: 110em) {
+    h1 {
+      font-size: 3.6em;
+    }
+  }
+
+  h1 + h1 {
+    color: rgba(51, 51, 51, 0.8);
+    font-size: 1.6rem;
+  }
+  @media all and (min-width: 30em) and (max-width: 47em) {
+    h1 + h1 {
+      font-size: 2.2rem;
+    }
+  }
+  @media all and (min-width: 47em) {
+    h1 + h1 {
+      font-size: 3rem;
+    }
+  }
+  @media all and (min-width: 70em) {
+    h1 + h1 {
+      font-size: 2.8rem;
+      padding-top: 0;
+    }
+  }
+  @media all and (min-width: 110em) {
+    h1 + h1 {
+      font-size: 3.6em;
+    }
+  }
+
+  /* forced line breaks for screen sizes */
+  .title-mobile {
+    display: none;
+  }
+
+  @media all and (max-width: 70em) {
+    .title-mobile {
+      display: block;
+    }
+  }
+
+  .title-desktop {
+    display: none;
+  }
+
+  @media all and (min-width: 70em) {
+    .title-desktop {
+      display: block;
+    }
+  }
+
+  /*------------------------------------*\
+    buttons
+\*------------------------------------*/
+
+  button {
+    font-family: "Raleway", sans-serif;
+    text-transform: uppercase;
+    border: 1px solid rgba(51, 51, 51, 0.8);
+    color: rgba(51, 51, 51, 0.8);
+    border-radius: 2px;
+    margin-top: 1.6rem;
+    padding: 0.6rem 1rem;
+    background: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-tap-highlight-color: transparent;
+    cursor: pointer;
+  }
+
+  @media all and (min-width: 30em) and (max-width: 47em), (min-width: 110em) {
+    button {
+      font-size: 1.4em;
+      line-height: 1.8em;
+      padding: 0.5rem 1.2rem;
+    }
+  }
+
+  button:active,
+  button:hover {
+    color: rgb(248, 248, 248);
+    background: rgba(51, 51, 51, 1);
+  }
+  button:focus {
+    outline: none;
+  }
+
+  @media all and (min-width: 47em) {
+    button {
+      font-size: 2rem;
+      line-height: 2.6rem;
+      margin-top: 2rem;
+    }
+  }
+  @media all and (min-width: 70em) {
+    button {
+      font-size: 1.4rem;
+      line-height: 1.8rem;
+    }
+  }
+  @media all and (min-width: 110em) {
+    button {
+      font-size: 1.6rem;
+      line-height: 2rem;
+    }
+  }
+
+  /* ---- height --- */
+
+  @media only screen and (max-height: 500px) {
+    .title-mobile {
+      display: none;
+    }
+    .title-desktop {
+      display: block;
+    }
+    h1,
+    h1 + h1 {
+      font-size: 1.6rem;
+      line-height: 1.6em;
+    }
+    button {
+      font-size: 1.2rem;
+      line-height: 1.6rem;
+      padding: 0.6rem 1rem;
+    }
+  }
+
+  @media only screen and (min-device-width: 469px) and (max-device-width: 1000px) and (orientation: landscape) {
+    .title-mobile {
+      display: none;
+    }
+    .title-desktop {
+      display: block;
+    }
+    h1,
+    h1 + h1 {
+      font-size: 2.2rem;
+      line-height: 1.6em;
+    }
+    button {
+      font-size: 1.2rem;
+      line-height: 1.6rem;
+      padding: 0.6rem 1rem;
+    }
+  }
+
+  /*------------------------------------*\
+    OUT NOW button - colour changes
+\*------------------------------------*/
+
+  .button-yellow {
+    color: rgba(51, 51, 51, 0.8);
+    border-color: rgba(51, 51, 51, 0.8);
+  }
+  .button-yellow:hover,
+  .button-yellow:active {
+    color: rgb(235, 255, 20);
+    background: rgb(51, 51, 51);
+  }
+
+  .button-blue,
+  .button-purple,
+  .button-red,
+  .button-cyan,
+  .button-pink,
+  .button-green,
+  .button-orange {
+    color: rgb(255, 255, 255);
+    border-color: rgb(255, 255, 255);
+  }
+
+  .button-blue:hover,
+  .button-blue:active {
+    color: rgb(39, 20, 255);
+  }
+
+  .button-purple:hover,
+  .button-purple:active {
+    color: rgb(189, 96, 255);
+  }
+
+  .button-red:hover,
+  .button-red:active {
+    color: rgb(255, 39, 20);
+  }
+
+  .button-cyan:hover,
+  .button-cyan:active {
+    color: rgb(20, 235, 255);
+  }
+
+  .button-pink:hover,
+  .button-pink:active {
+    color: rgb(255, 138, 187);
+  }
+
+  .button-green:hover,
+  .button-green:active {
+    color: rgb(20, 189, 34);
+  }
+
+  .button-orange:hover,
+  .button-orange:active {
+    color: rgb(255, 171, 53);
+  }
+
+  /*------------------------------------*\
+    Balloons
+\*------------------------------------*/
+
+  .balloon {
+    position: absolute;
+    bottom: -5%;
+    opacity: 0.9;
+    border-radius: 50%;
+    width: 18px;
+    height: 25px;
+    cursor: crosshair;
+    z-index: 2;
+  }
+
+  /* crap attempt at balloon neck */
+  .balloon:after {
+    position: relative;
+    background: inherit;
+    top: 18px;
+    left: 8px;
+    display: block;
+    content: "";
+    height: 0.6rem;
+    width: 0.2rem;
+    border-radius: 100%;
+  }
+
+  .balloon:hover {
+    font-size: 2.1em;
+    opacity: 0.7;
+  }
+  .balloon:active {
+    cursor: crosshair;
+  }
+
+  /*------------------------------------*\
+    Starting Ballons - 1 iteration
+\*------------------------------------*/
+  .balloon:nth-child(1) {
+    background: rgb(235, 255, 20);
+    bottom: 55%;
+    left: 50%;
+    -webkit-animation: once-a 8s 1 ease-in forwards;
+    animation: once-a 8s 1 ease-in forwards;
+  }
+  @-webkit-keyframes once-a {
+    0% {
+      bottom: 55%;
+      -webkit-transform: translateX(0) rotate(8deg);
+    }
+    20% {
+      -webkit-transform: rotate(4deg);
+    }
+    50% {
+      -webkit-transform: translateX(5px) rotate(-12deg);
+    }
+    75% {
+      -webkit-transform: translateX(-2px) rotate(10deg);
+    }
+    100% {
+      bottom: 110%;
+      -webkit-transform: rotate(-8deg);
+    }
+  }
+  @keyframes once-a {
+    0% {
+      bottom: 55%;
+      -webkit-transform: translateX(0) rotate(8deg);
+    }
+    20% {
+      -webkit-transform: rotate(4deg);
+    }
+    50% {
+      -webkit-transform: translateX(5px) rotate(-12deg);
+    }
+    75% {
+      -webkit-transform: translateX(-2px) rotate(10deg);
+    }
+    100% {
+      bottom: 110%;
+      -webkit-transform: rotate(-8deg);
+    }
+  }
+
+  .balloon:nth-child(2) {
+    background: rgb(39, 20, 255);
+    bottom: 35%;
+    left: 20%;
+    -webkit-animation: once-b 8s 1 ease-in forwards;
+    animation: once-b 8s 1 ease-in forwards;
+  }
+  @-webkit-keyframes once-b {
+    0% {
+      bottom: 35%;
+      -webkit-transform: translateX(0) rotate(0deg);
+    }
+    20% {
+      -webkit-transform: rotate(-8deg);
+    }
+    50% {
+      -webkit-transform: translateX(-10px) rotate(10deg);
+    }
+    75% {
+      -webkit-transform: translateX(5px) rotate(-8deg);
+    }
+    100% {
+      bottom: 110%;
+      -webkit-transform: translateX(0) rotate(8deg);
+    }
+  }
+  @keyframes once-b {
+    0% {
+      bottom: 35%;
+      -webkit-transform: translateX(0) rotate(0deg);
+    }
+    20% {
+      -webkit-transform: rotate(-8deg);
+    }
+    50% {
+      -webkit-transform: translateX(-10px) rotate(10deg);
+    }
+    75% {
+      -webkit-transform: translateX(5px) rotate(-8deg);
+    }
+    100% {
+      bottom: 110%;
+      -webkit-transform: translateX(0) rotate(8deg);
+    }
+  }
+
+  .balloon:nth-child(3) {
+    background: rgb(189, 96, 255);
+    bottom: 15%;
+    left: 30%;
+    -webkit-animation: once-c 11s 1 ease-in forwards;
+    animation: once-c 11s 1 ease-in forwards;
+  }
+  @-webkit-keyframes once-c {
+    0% {
+      bottom: 15%;
+      -webkit-transform: translateX(0) rotate(0deg);
+    }
+    20% {
+      -webkit-transform: translateX(-4px) rotate(4deg);
+    }
+    50% {
+      -webkit-transform: translateX(8px) rotate(-8deg);
+    }
+    75% {
+      -webkit-transform: translateX(-10px) rotate(10deg);
+    }
+    100% {
+      bottom: 110%;
+      -webkit-transform: translateX(0) rotate(0deg);
+    }
+  }
+
+  @keyframes once-c {
+    0% {
+      bottom: 15%;
+      -webkit-transform: translateX(0) rotate(0deg);
+    }
+    20% {
+      -webkit-transform: translateX(-4px) rotate(4deg);
+    }
+    50% {
+      -webkit-transform: translateX(8px) rotate(-8deg);
+    }
+    75% {
+      -webkit-transform: translateX(-10px) rotate(10deg);
+    }
+    100% {
+      bottom: 110%;
+      -webkit-transform: translateX(0) rotate(0deg);
+    }
+  }
+
+  .balloon:nth-child(4) {
+    background: rgb(255, 39, 20);
+    bottom: 5%;
+    left: 55%;
+    -webkit-animation: once-d 14s 1 ease-in forwards;
+    animation: once-d 14s 1 ease-in forwards;
+  }
+  @-webkit-keyframes once-d {
+    0% {
+      bottom: 5%;
+      -webkit-transform: translateX(0) rotate(-4deg);
+    }
+    40% {
+      -webkit-transform: translateX(-8px) rotate(10deg);
+    }
+    85% {
+      -webkit-transform: translateX(10px) rotate(-8deg);
+    }
+    100% {
+      bottom: 110%;
+      -webkit-transform: translateX(0) rotate(0);
+    }
+  }
+  @keyframes once-d {
+    0% {
+      bottom: 5%;
+      -webkit-transform: translateX(0) rotate(-4deg);
+    }
+    40% {
+      -webkit-transform: translateX(-8px) rotate(10deg);
+    }
+    85% {
+      -webkit-transform: translateX(10px) rotate(-8deg);
+    }
+    100% {
+      bottom: 110%;
+      -webkit-transform: translateX(0) rotate(0);
+    }
+  }
+
+  .balloon:nth-child(5) {
+    background: rgb(20, 235, 255);
+    bottom: 10%;
+    left: 75%;
+    -webkit-animation: once-e 10s 1 ease-in forwards;
+    animation: once-e 10s 1 ease-in forwards;
+  }
+  @-webkit-keyframes once-e {
+    0% {
+      bottom: 10%;
+      -webkit-transform: translateX(0) rotate(-4deg);
+    }
+    40% {
+      -webkit-transform: translateX(-8px) rotate(10deg);
+    }
+    85% {
+      -webkit-transform: translateX(10px) rotate(-8deg);
+    }
+    100% {
+      bottom: 110%;
+      -webkit-transform: translateX(0) rotate(0);
+    }
+  }
+  @keyframes once-e {
+    0% {
+      bottom: 10%;
+      -webkit-transform: translateX(0) rotate(-4deg);
+    }
+    40% {
+      -webkit-transform: translateX(-8px) rotate(10deg);
+    }
+    85% {
+      -webkit-transform: translateX(10px) rotate(-8deg);
+    }
+    100% {
+      bottom: 110%;
+      -webkit-transform: translateX(0) rotate(0);
+    }
+  }
+
+  /*------------------------------------*\
+        Infinite Ballons
+\*------------------------------------*/
+
+  .balloon:nth-child(6) {
+    background: rgb(255, 138, 187);
+    bottom: -10%;
+    left: 45%;
+    -webkit-animation: balloon 13s 2s infinite ease-in;
+    animation: balloon 13s 2s infinite ease-in;
+  }
+  @-webkit-keyframes balloon {
+    0% {
+      bottom: -10%;
+      -webkit-transform: translateX(0) rotate(8deg);
+    }
+    20% {
+      -webkit-transform: rotate(4deg);
+    }
+    50% {
+      -webkit-transform: translateX(5px) rotate(-12deg);
+    }
+    75% {
+      -webkit-transform: translateX(-2px) rotate(10deg);
+    }
+    100% {
+      bottom: 110%;
+      -webkit-transform: rotate(-8deg);
+    }
+  }
+  @keyframes balloon {
+    0% {
+      bottom: -10%;
+      -webkit-transform: translateX(0) rotate(8deg);
+    }
+    20% {
+      -webkit-transform: rotate(4deg);
+    }
+    50% {
+      -webkit-transform: translateX(5px) rotate(-12deg);
+    }
+    75% {
+      -webkit-transform: translateX(-2px) rotate(10deg);
+    }
+    100% {
+      bottom: 110%;
+      -webkit-transform: rotate(-8deg);
+    }
+  }
+
+  .balloon:nth-child(7) {
+    background: rgb(255, 171, 53);
+    bottom: -10%;
+    left: 20%;
+    -webkit-animation: balloon2 15s 3.2s infinite ease-in;
+    animation: balloon2 15s 3.2s infinite ease-in;
+  }
+  @-webkit-keyframes balloon2 {
+    0% {
+      bottom: -10%;
+      -webkit-transform: translateX(0) rotate(0deg);
+    }
+    20% {
+      -webkit-transform: rotate(-8deg);
+    }
+    50% {
+      -webkit-transform: translateX(-10px) rotate(10deg);
+    }
+    75% {
+      -webkit-transform: translateX(5px) rotate(-8deg);
+    }
+    100% {
+      bottom: 110%;
+      -webkit-transform: translateX(0) rotate(8deg);
+    }
+  }
+  @keyframes balloon2 {
+    0% {
+      bottom: -10%;
+      -webkit-transform: translateX(0) rotate(0deg);
+    }
+    20% {
+      -webkit-transform: rotate(-8deg);
+    }
+    50% {
+      -webkit-transform: translateX(-10px) rotate(10deg);
+    }
+    75% {
+      -webkit-transform: translateX(5px) rotate(-8deg);
+    }
+    100% {
+      bottom: 110%;
+      -webkit-transform: translateX(0) rotate(8deg);
+    }
+  }
+
+  .balloon:nth-child(8) {
+    background: rgb(39, 20, 255);
+    bottom: -10%;
+    left: 75%;
+    -webkit-animation: balloon3 19s 10s infinite ease-in;
+    animation: balloon3 19s 10s infinite ease-in;
+  }
+  @-webkit-keyframes balloon3 {
+    0% {
+      bottom: -10%;
+      -webkit-transform: translateX(0) rotate(0deg);
+    }
+    20% {
+      -webkit-transform: translateX(-4px) rotate(4deg);
+    }
+    50% {
+      -webkit-transform: translateX(8px) rotate(-8deg);
+    }
+    75% {
+      -webkit-transform: translateX(-10px) rotate(10deg);
+    }
+    100% {
+      bottom: 110%;
+      -webkit-transform: translateX(0) rotate(0deg);
+    }
+  }
+  @keyframes balloon3 {
+    0% {
+      bottom: -10%;
+      -webkit-transform: translateX(0) rotate(0deg);
+    }
+    20% {
+      -webkit-transform: translateX(-4px) rotate(4deg);
+    }
+    50% {
+      -webkit-transform: translateX(8px) rotate(-8deg);
+    }
+    75% {
+      -webkit-transform: translateX(-10px) rotate(10deg);
+    }
+    100% {
+      bottom: 110%;
+      -webkit-transform: translateX(0) rotate(0deg);
+    }
+  }
+
+  .balloon:nth-child(9) {
+    background: rgb(235, 255, 20);
+    bottom: -10%;
+    left: 55%;
+    -webkit-animation: balloon4 12s 6s infinite ease-in;
+    animation: balloon4 12s 6s infinite ease-in;
+  }
+  @-webkit-keyframes balloon4 {
+    0% {
+      bottom: -10%;
+      -webkit-transform: translateX(0) rotate(-4deg);
+    }
+    40% {
+      -webkit-transform: translateX(-8px) rotate(10deg);
+    }
+    85% {
+      -webkit-transform: translateX(10px) rotate(-8deg);
+    }
+    100% {
+      bottom: 110%;
+      -webkit-transform: translateX(0) rotate(0);
+    }
+  }
+  @keyframes balloon4 {
+    0% {
+      bottom: -10%;
+      -webkit-transform: translateX(0) rotate(-4deg);
+    }
+    40% {
+      -webkit-transform: translateX(-8px) rotate(10deg);
+    }
+    85% {
+      -webkit-transform: translateX(10px) rotate(-8deg);
+    }
+    100% {
+      bottom: 110%;
+      -webkit-transform: translateX(0) rotate(0);
+    }
+  }
+
+  .balloon:nth-child(10) {
+    bacground: rgb(189, 96, 255);
+    bottom: -10%;
+    left: 65%;
+    -webkit-animation: balloon4 12s 10s infinite ease-in;
+    animation: balloon4 12s 10s infinite ease-in;
+  }
+
+  .balloon:nth-child(11) {
+    background: rgb(20, 189, 34);
+    bottom: -10%;
+    left: 85%;
+    -webkit-animation: balloon2 12s 4s infinite ease-in;
+    animation: balloon2 12s 4s infinite ease-in;
+  }
+
+  .balloon:nth-child(12) {
+    background: rgb(20, 235, 255);
+    bottom: -10%;
+    left: 10%;
+    -webkit-animation: balloon3 14s 7s infinite ease-in;
+    animation: balloon3 14s 7s infinite ease-in;
+  }
+
+  .balloon:nth-child(13) {
+    background: rgb(255, 39, 20);
+    bottom: -10%;
+    left: 30%;
+    -webkit-animation: balloon 13s 10.5s infinite ease-in;
+    animation: balloon 13s 10.5s infinite ease-in;
+  }
+
+  .fade {
+    opacity: 0;
+    -webkit-transition: opacity 0.5s;
+    transition: opacity 0.5s;
+  }
+</style>
+<script>
+  window.onload = function () {
+    homeFunction();
+  };
+
+  //Intro Balloon Pops - colour changes
+  var balloonsContainer = document.getElementById("balloons-container"),
+    balloons = balloonsContainer.childNodes,
+    introTitle = document.getElementById("intro-title"),
+    introSub = document.getElementById("intro-sub"),
+    introBut = document.getElementById("intro-button");
+
+  for (var i = 0; i < balloons.length; i++) {
+    var balloon = balloons[i];
+    balloon.addEventListener("click", pop, false);
+  }
+
+  function pop(e) {
+    var element = e.target;
+    if (element.classList.contains("yellow")) {
+      introBut.className = "button-yellow";
+    } else if (element.classList.contains("blue")) {
+      // intro.style.background = 'rgb(39,20,255)';
+      introBut.className = "button-blue";
+      if (introTitle.style.color !== "rgb(255,255,255)") {
+        introTitle.style.color = "rgb(255,255,255)";
+        introSub.style.color = "rgba(255,255,255,.8)";
+      }
+    } else if (element.classList.contains("purple")) {
+      intro.style.background = "rgb(189,96,255)";
+      introBut.className = "button-purple";
+      if (introTitle.style.color !== "rgb(255,255,255)") {
+        introTitle.style.color = "rgb(255,255,255)";
+        introSub.style.color = "rgba(255,255,255,.8)";
+      }
+    } else if (element.classList.contains("red")) {
+      intro.style.background = "rgb(255,39,20)";
+      introBut.className = "button-red";
+      if (introTitle.style.color !== "rgb(255,255,255)") {
+        introTitle.style.color = "rgb(255,255,255)";
+        introSub.style.color = "rgba(255,255,255,.8)";
+      }
+    } else if (element.classList.contains("cyan")) {
+      intro.style.background = "rgb(20,235,255)";
+      introBut.className = "button-cyan";
+      if (introTitle.style.color !== "rgb(255,255,255)") {
+        introTitle.style.color = "rgb(255,255,255)";
+        introSub.style.color = "rgba(255,255,255,.8)";
+      }
+    } else if (element.classList.contains("pink")) {
+      intro.style.background = "rgb(255,138,187)";
+      introBut.className = "button-pink";
+      if (introTitle.style.color !== "rgb(255,255,255)") {
+        introTitle.style.color = "rgb(255,255,255)";
+        introSub.style.color = "rgba(255,255,255,.8)";
+      }
+    } else if (element.classList.contains("green")) {
+      intro.style.background = "rgb(20,189,34)";
+      introBut.className = "button-green";
+      if (introTitle.style.color !== "rgb(255,255,255)") {
+        introTitle.style.color = "rgb(255,255,255)";
+        introSub.style.color = "rgba(255,255,255,.8)";
+      }
+    } else if (element.classList.contains("orange")) {
+      intro.style.background = "rgb(255,171,53)";
+      introBut.className = "button-orange";
+      if (introTitle.style.color !== "rgb(255,255,255)") {
+        introTitle.style.color = "rgb(255,255,255)";
+        introSub.style.color = "rgba(255,255,255,.8)";
+      }
+    }
+    element.style.display = "none";
+  }
+
+  function homeFunction() {
+    document.getElementById("color1").style.backgroundColor = "#66d5f3";
+    document.getElementById("color1").style.color = "white";
+
+    document.getElementById("home").style.display = "block";
+    document.getElementById("color2").style.color = "black";
+    document.getElementById("color2").style.backgroundColor = "#66d5f3";
+
+    document.getElementById("next").style.display = "none";
+    document.getElementById("color3").style.color = "black";
+    document.getElementById("color3").style.backgroundColor = "#66d5f3";
+
+    document.getElementById("another").style.display = "none";
+    document.getElementById("color4").style.color = "black";
+    document.getElementById("color4").style.backgroundColor = "#66d5f3";
+
+    document.getElementById("more").style.display = "none";
+    const style = document.getElementById("dynamicbody");
+    style.innerHTML = `
+   
+    body {
+      background-color: #66d5f3;
+    }
+   
+   `;
+    document.body.style.backgroundColor = "#66d5f3";
+  }
+
+  function anotherFunction() {
+    document.getElementById("color3").style.backgroundColor = "#3EC9A7";
+    document.getElementById("color3").style.color = "white";
+
+    document.getElementById("another").style.display = "block";
+    document.getElementById("color1").style.color = "black";
+    document.getElementById("color1").style.backgroundColor = "white";
+
+    document.getElementById("home").style.display = "none";
+    document.getElementById("color2").style.color = "black";
+    document.getElementById("color2").style.backgroundColor = "white";
+    document.getElementById("next").style.display = "none";
+    document.getElementById("color4").style.color = "black";
+    document.getElementById("color4").style.backgroundColor = "white";
+
+    document.getElementById("more").style.display = "none";
+  }
+
+  function nextFunction() {
+    document.getElementById("color2").style.backgroundColor =
+      " rgb(242, 210, 218)";
+    document.getElementById("color2").style.color = "white";
+
+    document.getElementById("next").style.display = "block";
+    document.getElementById("color1").style.color = "black";
+    document.getElementById("color1").style.backgroundColor = "white";
+    document.getElementById("home").style.display = "none";
+    document.getElementById("color3").style.color = "black";
+    document.getElementById("color3").style.backgroundColor = "white";
+
+    document.getElementById("another").style.display = "none";
+    document.getElementById("color4").style.color = "black";
+    document.getElementById("color4").style.backgroundColor = "white";
+    document.getElementById("more").style.display = "none";
+    const style = document.getElementById("dynamicbody");
+    style.innerHTML = `
+   
+    body {
+      background-color:  rgb(242, 210, 218);
+    }
+   
+   `;
+    document.body.style.backgroundColor = " rgb(242, 210, 218)";
+  }
+
+  function moreFunction() {
+    document.getElementById("color4").style.backgroundColor = "#fff7e2";
+    document.getElementById("color4").style.color = "black";
+
+    document.getElementById("more").style.display = "block";
+    document.getElementById("color1").style.color = "black";
+    document.getElementById("color1").style.backgroundColor = "white";
+    document.getElementById("home").style.display = "none";
+    document.getElementById("color3").style.color = "black";
+    document.getElementById("color3").style.backgroundColor = "white";
+
+    document.getElementById("another").style.display = "none";
+    document.getElementById("color2").style.color = "black";
+    document.getElementById("color2").style.backgroundColor = "white";
+
+    document.getElementById("next").style.display = "none";
+    
+    document.body.style.backgroundColor = "#fff7e2";
+  }
+
+  function aClear() {
+    document.getElementById("color1").style.backgroundColor = "white";
+    document.getElementById("color1").style.color = "black";
+
+    document.getElementById("home").style.display = "none";
+    document.getElementById("color2").style.color = "black";
+    document.getElementById("color2").style.backgroundColor = "white";
+
+    document.getElementById("next").style.display = "none";
+    document.getElementById("color3").style.color = "black";
+    document.getElementById("color3").style.backgroundColor = "white";
+
+    document.getElementById("another").style.display = "none";
+    document.getElementById("color4").style.color = "black";
+    document.getElementById("color4").style.backgroundColor = "white";
+
+    document.getElementById("more").style.display = "none";
+  }
+
+  document.getElementById("subbutton").addEventListener("click", function (e) {
+    e.preventDefault(); // Prevents the form from submitting the traditional way
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const amount = document.getElementById("amount").value;
+    // Correct the data object to match the backend
+    const data = {
+      name: name,
+      email: email,
+      donationAmount: amount,
+    };
+
+    // Sending request to the server
+    fetch("http://localhost:5500/sendemail", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data), // Corrected: body should be a JSON string
+    })
+      .then((response) => response.text())
+      .then((data) => {
+        console.log(data); // Success response
+        alert("Email sent successfully");
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        alert("Error sending email");
+      });
+  });
+
+  //for ldl about section
+  document.addEventListener("DOMContentLoaded", () => {
+    fetch("aboutldl.html")
+      .then((response) => response.text())
+      .then((data) => {
+        document.getElementById("aboutldl").innerHTML = data;
+        import("./aboutldl.js").then((module) => {
+          module.initializeldlaboutscript();
+        });
+      })
+      .catch((error) => {
+        console.error("error loading ");
+      });
+    fetch("admin.html")
+      .then((response) => response.text())
+      .then((data) => {
+        document.getElementById("admin").innerHTML = data;
+        import('./admin.js').then((module)=>{
+          module.initializeadminscript();
+        });
+      })
+      .catch((error) => {
+        console.error("error loading admin");
+      });
+  });
 </script>

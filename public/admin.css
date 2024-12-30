@@ -1,0 +1,42 @@
+.firstlaidownsection{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.downbox{
+    width:90%;
+    height:200px;
+    background: linear-gradient(45deg, #f2ba12, #afd0de);
+    border-radius: 5%;
+    display: flex;
+    justify-content: space-between;
+    
+}
+.downbox:hover{
+    background: linear-gradient(45deg,  #afd0de,#f2ba12);
+}
+.downbox h1{
+    top:0;
+    left:0;
+    right:0;
+    margin-bottom: 5px;
+}
+.sendemailsection{
+    margin:10px;
+    margin-right:50px;
+}
+.masterpic img{
+    width:100%;
+    
+}
+.fa-envelope{
+    margin:20px;
+    color:#9fadb3;
+}
+h1 {
+  font-size: calc(2em + 5vw); /* Font size combines em for base scaling and vw for responsiveness */
+}
+.sendemailsection{
+    overflow: scroll;
+}

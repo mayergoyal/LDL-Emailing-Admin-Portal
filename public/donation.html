@@ -1,77 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Donation</title>
-</head>
-<style>
-  .user-table {
-    width: 80%;
-    margin: 20px auto;
-    border-collapse: collapse;
-    font-family: Arial, sans-serif;
-    background-color: rgb(156, 204, 110);
-    
-  }
-
-  .user-table th, .user-table td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
-  }
-
-  .user-table th {
-    background-color: #f2f2f2;
-    font-weight: bold;
-  }
-
-  .user-table tr:nth-child(even) {
-    background-color: #f9f9f9;
-  }
-
-  .user-table tr:hover {
-    background-color: #ddd;
-  }
-  body{
-    background: url('./images/Red Green Orange Colorful Handprint Illustration T-shirt.png');
-  }
-  .mainheading{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-  }
-  .mainheading h1{
-    font-family: cursive;
-    font-size: 2.5rem;
-    background-color: rgba(156, 204, 110,.4);
-  }
-</style>
-
-<body>
-    <div class="mainheading">
-        <h1>DONATION LDL -JIIT</h1>
-    </div>
-</body>
-<script>
-    function fetchuser(){
-        fetch('http://localhost:5000/users').then(response=>response.json())
-        .then(users=>{
-             displayusers(users);
-
-        })
-        .catch(error=>console.error('error ',error));
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <style>
+    .user-table {
+      width: 80%;
+      margin: 20px auto;
+      border-collapse: collapse;
+      font-family: Arial, sans-serif;
+      background-color: rgb(156, 204, 110);
     }
-   function displayusers(users) {
-  // Create a table element
-  const table = document.createElement('table');
-  table.classList.add('user-table');
 
-  // Create the header row
-  const headerRow = `
+    .user-table th,
+    .user-table td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+
+    .user-table th {
+      background-color: #f2f2f2;
+      font-weight: bold;
+    }
+
+    .user-table tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    .user-table tr:hover {
+      background-color: #ddd;
+    }
+    body {
+      background: url("./images/LDL JIIT.png");
+    }
+    .mainheading {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .mainheading h1 {
+      font-family: cursive;
+      font-size: 2.5rem;
+      background-color: rgba(156, 204, 110, 0.4);
+    }
+    body {
+      background: url("./images/LDL JIIT (1).png");
+    }
+    .user-table {
+      border: 3px solid black;
+    }
+    .fa-circle-xmark {
+      margin: 0;
+      margin-left: 90%;
+      border-radius: 100%;
+      transition:all .2s ease;
+    }
+    .fa-circle-xmark:hover {
+      background-color: red;
+      cursor: pointer;
+
+    }
+    .fa-circle-xmark:active{
+      transform :translateY(4px);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+
+  <body>
+    <div class="mainheading">
+      <h1>DONATION LDL -JIIT</h1>
+    </div>
+    <div>
+      <i class="fa-solid fa-circle-xmark fa-2x"></i>
+    </div>
+    <div class="table-container">
+      <table class="user-table">
+        <!-- Table content will be dynamically added here -->
+      </table>
+    </div>
+  </body>
+  <script>
+    const crossbutton=document.querySelector('.fa-circle-xmark');
+    crossbutton.onclick=()=>{
+      window.location.href='index.html';
+    }
+    function fetchuser() {
+      fetch("http://localhost:5500/users")
+        .then((response) => response.json())
+        .then((users) => {
+          displayusers(users);
+        })
+        .catch((error) => console.error("error ", error));
+    }
+    function displayusers(users) {
+      // Create a table element
+      const table = document.createElement("table");
+      table.classList.add("user-table");
+      const cross = ` <i class="fa-solid fa-circle-xmark"></i>`;
+      // Create the header row
+      const headerRow = `
+     
     <thead>
+      
       <tr>
+
         <th>Name</th>
         <th>Email</th>
         <th>Donation Amount</th>
@@ -80,12 +119,12 @@
     </thead>
   `;
 
-  // Create table body to hold user rows
-  let tableBody = '<tbody>';
-  
-  users.forEach(user => {
-   const createdAt = new Date(user.createdAt).toLocaleString();
-    tableBody += `
+      // Create table body to hold user rows
+      let tableBody = "<tbody>";
+
+      users.forEach((user) => {
+        const createdAt = new Date(user.createdAt).toLocaleString();
+        tableBody += `
       <tr>
         <td>${user.name}</td>
         <td>${user.email}</td>
@@ -93,17 +132,17 @@
         <td>${createdAt}</td>
       </tr>
     `;
-  });
+      });
 
-  tableBody += '</tbody>';
+      tableBody += "</tbody>";
 
-  // Combine header and body into the table
-  table.innerHTML = headerRow + tableBody;
+      // Combine header and body into the table
+      table.innerHTML = headerRow + tableBody;
 
-  // Append the table to the body or a specific element
-  document.body.appendChild(table);
-}
-// Fetch users when the page loads
-  window.onload = fetchuser;
-</script>
+      // Append the table to the body or a specific element
+      document.body.appendChild(table);
+    }
+    // Fetch users when the page loads
+    window.onload = fetchuser;
+  </script>
 </html>
