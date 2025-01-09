@@ -1,0 +1,57 @@
+.circlegrid {
+  border-radius: 100%;
+  background-color: white;
+  width: 300px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin: 80px;
+  margin-bottom: 8px;
+}
+.gridimg {
+  width: 40%;
+  height: auto;
+}
+.grid {
+  margin: 50px;
+  display: flex;
+  flex-wrap: wrap;
+}
+p {
+  margin: 0;
+}
+strong {
+  margin: 0;
+  padding: 0;
+}
+.mainpicture {
+  position: fixed;
+  z-index: 5;
+  opacity: 0;
+  overflow: hidden;
+  
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+  transform: scale(0.8);
+}
+.overlay {
+  transition: 0.5s ease;
+
+  color: white;
+}
+
+.mainpicture {
+   
+    top: 50%; /* Move to the vertical center */
+  left: 50%; /* Move to the horizontal center */
+  transform: translate(-50%, -50%); /* Center perfectly */
+transition: opacity 0.3s ease, transform 0.3s ease; /* Smooth transition */
+width: auto;
+height: auto;
+max-width: 500px;
+max-height: 500px;
+
+}

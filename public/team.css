@@ -1,0 +1,83 @@
+@import url(https://fonts.bunny.net/css?family=amita:700);
+
+.gallery1 {
+    background: linear-gradient(45deg, #b3ffec,#36937c, #FFB2AA);
+    min-height: 100vh;
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+}
+
+.h11 {
+    color: #fefae0;
+    font-family: Amita;
+    margin: 20px auto;
+    width: 450px;
+    font-size: 3rem;
+    text-align: center;
+    border-bottom: 10px double #bc6c25;
+}
+
+.gal {
+    width: 450px;
+    height: 300px;
+    margin: 10px;
+    border: 10px solid #fefae0;
+    -webkit-filter: sepia(100%);
+    filter: sepia(100%);
+    transition-duration: 1s;
+}
+
+.gal:hover {
+    border: 5px solid #fff;
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+    -webkit-filter: none;
+    filter: none;
+}
+
+
+.containergallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.teamheaderimg {
+  width: 100vw;
+  height: auto;
+  z-index: 2;
+}
+.yearwise{
+    width: 100vw;
+    border: 2px solid white;
+    height: 80px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
+.yearbox{
+    width: auto;
+    background-color: white;
+    height: auto;
+    display: flex;
+    margin: 10px;
+    align-items: center;
+    border-radius: 3.6%;
+    cursor: pointer;
+    transition: .2s ease;
+}
+.yearbox:active{
+    transform:translateY(2px) ;
+    background-color: #FFB2AA;
+}
+
+.year{
+    font-size: 2.3rem;
+    margin: 12px;
+}

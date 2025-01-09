@@ -148,16 +148,16 @@
     }
 
     #color3 {
-      border-bottom: 12px solid #3ec9a7;
+      border-bottom: 12px solid #b3ffec;
     }
 
     #color3:hover {
-      background: #3ec9a7;
+      background: #b3ffec;
       color: #616668;
     }
 
     #another {
-      background: #3ec9a7;
+      background: #b3ffec;
     }
 
     #color4 {
@@ -310,7 +310,7 @@
       </div>
       <div class="dropdown" id="another">
         <br />
-        <h1>Team</h1>
+        <div class="team" id="team"></div>
         <hr />
         <p class="text"></p>
       </div>
@@ -1174,8 +1174,8 @@
   }
 
   function anotherFunction() {
-    document.getElementById("color3").style.backgroundColor = "#3EC9A7";
-    document.getElementById("color3").style.color = "white";
+    document.getElementById("color3").style.backgroundColor = "#b3ffec";
+    document.getElementById("color3").style.color = "black";
 
     document.getElementById("another").style.display = "block";
     document.getElementById("color1").style.color = "black";
@@ -1189,6 +1189,7 @@
     document.getElementById("color4").style.backgroundColor = "white";
 
     document.getElementById("more").style.display = "none";
+    document.body.style.backgroundColor='#b3ffec';
   }
 
   function nextFunction() {
@@ -1234,7 +1235,7 @@
     document.getElementById("color2").style.backgroundColor = "white";
 
     document.getElementById("next").style.display = "none";
-    
+
     document.body.style.backgroundColor = "#fff7e2";
   }
 
@@ -1301,11 +1302,24 @@
       .catch((error) => {
         console.error("error loading ");
       });
+    fetch("team.html")
+    .then((response)=>response.text())
+    .then((data)=>{
+      document.getElementById("team").innerHTML=data;
+      import("./team.js").then((module)=>{
+        module.initializetamscript();
+      });
+     
+
+    })
+    .catch((error)=>{
+      console.error("error loading team.html");
+    })
     fetch("admin.html")
       .then((response) => response.text())
       .then((data) => {
         document.getElementById("admin").innerHTML = data;
-        import('./admin.js').then((module)=>{
+        import("./admin.js").then((module) => {
           module.initializeadminscript();
         });
       })

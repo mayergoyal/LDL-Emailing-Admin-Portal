@@ -11,10 +11,14 @@ app.use(bodyparser.json());
 const uri =
   "mongodb+srv://mayermongo:mayermongo@mayercluster.uujbdu5.mongodb.net/?retryWrites=true&w=majority&appName=mayercluster";
 const mongoose = require("mongoose");
+const email_name=process.env.email_name;
+const email_pass=process.env.email_pass;
+const port_name=process.env.port_name;
 mongoose
   .connect(uri)
   .then(() => {
     console.log("connected to mongodb successfully");
+    
   })
   .catch((error) => {
     console.error("error ", error);
@@ -52,8 +56,8 @@ app.post("/sendemail1", (req, res) => {
     port: 587,
     secure: false, // true for 465, false for other ports
     auth: {
-      user: "ldljiit@gmail.com",
-      pass: "lljwoyclmsxlvbms",
+      user: email_name,
+      pass: email_pass,
     },
     tls: {
       rejectUnauthorized: false,
@@ -63,7 +67,7 @@ app.post("/sendemail1", (req, res) => {
   });
 
   const mailOptions = {
-    from: "ldljiit@gmail.com",
+    from: email_name,
     to: email,
     subject: `Happy New-Year ${name}`,
     html: `
@@ -79,12 +83,7 @@ app.post("/sendemail1", (req, res) => {
     For this "change," we expect a hand of help and support.
   </p>
   
- <p style="font-size: 16px; color: #333; margin-bottom: 20px;">
-  You can also contribute by scanning the QR code below:
-</p>
-<img src="https://drive.google.com/uc?id=1gjVnQLqj_tF2e-2-ySs5fAcvkStb1oiE" alt="Team Image" style="width: 80%;  border-radius: 10px; margin-top: 20px;" />
-
-
+ 
   
   <p style="font-size: 16px; color: #333; margin-top: 20px;">
     Team LDL JIIT wishes you all health and well-being. It's so beautiful to see you becoming part of our <strong>CHANGE</strong>.
@@ -124,8 +123,8 @@ app.post("/sendemail2", (req, res) => {
     port: 587,
     secure: false, // true for 465, false for other ports
     auth: {
-      user: "ldljiit@gmail.com",
-      pass: "lljwoyclmsxlvbms",
+      user: email_name,
+      pass: email_pass,
     },
     tls: {
       rejectUnauthorized: false,
@@ -135,7 +134,7 @@ app.post("/sendemail2", (req, res) => {
   });
 
   const mailOptions = {
-    from: "ldljiit@gmail.com",
+    from: email_name,
     to: email,
     subject: `Happy Deepawali ${name}`,
     html: `
@@ -192,8 +191,8 @@ app.post("/sendemail", (req, res) => {
     port: 587,
     secure: false, // true for 465, false for other ports
     auth: {
-      user: "goyalmayer2@gmail.com",
-      pass: "qupgoyojmefqndib",
+      user: email_name,
+      pass: email_pass,
     },
     tls: {
       rejectUnauthorized: false,
@@ -204,7 +203,7 @@ app.post("/sendemail", (req, res) => {
 
   //Email content
   const mailoptions = {
-    from: "goyalmayer2@gmail.com",
+    from: email_name,
     to: email,
     subject: "Thankyou for your donation",
     html: `  <div style="font-family: Arial, sans-serif; text-align: center; padding: 20px; background-color: #f4f4f4;">
@@ -258,7 +257,7 @@ app.get("/users", async (req, res) => {
 });
 
 //start the server
-const PORT = 5500;
+const PORT = port_name;
 app.listen(PORT, () => {
   console.log("server is running " + PORT);
 });
