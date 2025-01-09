@@ -257,7 +257,7 @@ app.get("/users", async (req, res) => {
 });
 
 //start the server
-const PORT = port_name;
+const PORT = port_name||3000;
 app.listen(PORT, () => {
   console.log("server is running " + PORT);
 });
