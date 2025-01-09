@@ -9,7 +9,7 @@ app.use(bodyparser.urlencoded({ extended: true })); //this is for body parsing t
 //app.use(express.static('public')); //serve static html files from the public folder
 app.use(bodyparser.json());
 const uri =
-  "mongodb+srv://mayermongo:mayermongo@mayercluster.uujbdu5.mongodb.net/?retryWrites=true&w=majority&appName=mayercluster";
+  process.env.mongo_url;
 const mongoose = require("mongoose");
 const email_name=process.env.email_name;
 const email_pass=process.env.email_pass;
