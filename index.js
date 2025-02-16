@@ -3,22 +3,22 @@ const bodyparser = require("body-parser");
 const nodemailer = require("nodemailer");
 const cors = require("cors");
 const app = express();
+const xlsx = require("xlsx");
+const fs = require("fs");
 app.use(cors());
 require("dotenv").config();
 app.use(bodyparser.urlencoded({ extended: true })); //this is for body parsing the request body in readble form , this urlencoded means whatever the url is fetching the data in encoded format , extended parameter is used for handling complex data structures like nested objects , but is extended is set to be false then it takes only key value pairs into consideration
 //app.use(express.static('public')); //serve static html files from the public folder
 app.use(bodyparser.json());
-const uri =
-  process.env.mongo_url;
+const uri = process.env.mongo_url;
 const mongoose = require("mongoose");
-const email_name=process.env.email_name;
-const email_pass=process.env.email_pass;
-const port_name=process.env.port_name;
+const email_name = process.env.email_name;
+const email_pass = process.env.email_pass;
+const port_name = process.env.port_name;
 mongoose
   .connect(uri)
   .then(() => {
     console.log("connected to mongodb successfully");
-    
   })
   .catch((error) => {
     console.error("error ", error);
@@ -44,13 +44,13 @@ const userSchema = new Schema(
 );
 
 const User = mongoose.model("User", userSchema);
-//NEW YEAR SERVER SIDE 
+//NEW YEAR SERVER SIDE
 app.post("/sendemail1", (req, res) => {
   console.log(req.body);
   const { name, email } = req.body;
- if (!name || !email) {
-   return res.status(400).send("Name and email are required");
- }
+  if (!name || !email) {
+    return res.status(400).send("Name and email are required");
+  }
   let transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
     port: 587,
@@ -111,7 +111,7 @@ app.post("/sendemail1", (req, res) => {
     res.send("Email sent successfully");
   });
 });
-//DEEWALI SERVER SIDE 
+//DEEWALI SERVER SIDE
 app.post("/sendemail2", (req, res) => {
   console.log(req.body);
   const { name, email } = req.body;
@@ -185,7 +185,7 @@ app.post("/sendemail2", (req, res) => {
 app.post("/sendemail", (req, res) => {
   console.log(req.body);
   const { name, email, donationAmount } = req.body;
-  
+
   let transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
     port: 587,
@@ -206,23 +206,37 @@ app.post("/sendemail", (req, res) => {
     from: email_name,
     to: email,
     subject: "Thankyou for your donation",
-    html: `  <div style="font-family: Arial, sans-serif; text-align: center; padding: 20px; background-color: #f4f4f4;">
+    html: `  
+    <div style="font-family: Arial, sans-serif; text-align: center; padding: 20px; background-color: rgb(97, 36, 39); color: white; line-height: 1.6; max-width: 600px; margin: auto; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+    <div >
       <h1 style="color: #28a745;">Thank You, ${name}!</h1>
       <!-- Adding an image -->
-      <img src="https://drive.google.com/uc?id=1uPUIRGyDlM_iHiIG8PG--JnlkZJQVJIp" alt="Team Image" style="width: 100%; max-width: 400px; border-radius: 10px; margin-top: 20px;" />
-      <img src="https://media.gettyimages.com/id/925644610/photo/rural-girls-studying-in-light-bulb.jpg?s=612x612&w=0&k=20&c=AjcSUuu6Ij96Yjm6AZQVDjcPczyciTDrJh0zxkzhxDw=" />
+      
+      <img src="https://drive.google.com/uc?id=1uPUIRGyDlM_iHiIG8PG--JnlkZJQVJIp" alt="Team Image" style="width: 100%; max-width: 400px;  margin-top: 20px;" />
+      
+      
+      <div>
       <p style="font-size: 16px;">We sincerely appreciate your generous donation to our cause. Your support helps us continue our work and make a difference.
       The amount you donated was not just money that u gave but its actually a big contribution toward the children .
+      We all know that life is a bundle of different emotions and experiences but out of all those bundlings , the purest form is called <b>Love</b>
+      <div style='background-Color:white ; margin:10px;'>
+      And we 're spreading love and since you became a part of it now you too with us are at this mission : a pure mission toward love ; toward change ..
+       and thus we say :-
+      </div>
+      <h3 style=" color:yellow; "><b>We For Change</b></h3>
       Team LDL JIIT wishes all your health and well being .
       Its so beautiful to see you becoming the part of our <b>CHANGE</b> .
-      We wish for a healthy & prosperous Deewali !!
+      </div>
       </p>
       
       
       
-      <p style="font-size: 14px; color: #555;">
-        Best regards,<br>Team LDL JIIT
+    
+      <img src="https://media.gettyimages.com/id/925644610/photo/rural-girls-studying-in-light-bulb.jpg?s=612x612&w=0&k=20&c=AjcSUuu6Ij96Yjm6AZQVDjcPczyciTDrJh0zxkzhxDw=" />
+        <p style="font-size: 14px; color: white;">
+        Best regards,<br> <b>Team LDL JIIT</b>
       </p>
+    </div>
     </div>
     `,
   };
@@ -256,8 +270,123 @@ app.get("/users", async (req, res) => {
   }
 });
 
+//for lofin passwords
+//donation passkeys
+app.post("/verify-donation-pass", (req, res) => {
+  const { password } = req.body;
+  if (password == process.env.donationpasskey) {
+    res.json({ valid: true });
+  } else {
+    res.json({ valid: false });
+  }
+});
+app.post("/verify-attendance-pass",(req,res)=>{
+  const {password}=req.body;
+  if(password==process.env.attendancepasskey){
+    res.json({valid:true});
+  }
+  else{
+    res.json({valid:false});
+  }
+})
+app.post("/verify-kaushambi-pass", (req, res) => {
+  const { password } = req.body;
+  if (password == process.env.kaushambipasskey) {
+    res.json({ valid: true });
+  } else {
+    res.json({ valid: false });
+  }
+});
+app.post("/verify-fortis-pass", (req, res) => {
+  const { password } = req.body;
+  if (password == process.env.fortspasskey) {
+    res.json({ valid: true });
+  } else {
+    res.json({ valid: false });
+  }
+});
+app.post("/verify-finance-pass", (req, res) => {
+  const { password } = req.body;
+  if (password == process.env.financespasskey) {
+    res.json({ valid: true });
+  } else {
+    res.json({ valid: false });
+  }
+});
+
+//incampusdonation
+const donationSchema = new mongoose.Schema({
+  name: String,
+  department: String,
+  date: String,
+  buildingFloor: String,
+  amount: String,
+  Receiver1: String,
+  Receiver2: String,
+  Receiver3: String,
+});
+const Donation=mongoose.model("Donation",donationSchema);
+
+app.post("/add-to-mongo", async(req, res) => {
+  const {
+    name,
+    department,
+    date,
+    Building,
+    amount,
+    Receiver1,
+    Receiver2,
+    Receiver3,
+  } = req.body;
+
+  console.log("Received request with body:", req.body);
+
+  // Check if all required fields are present
+  if (
+    !name ||
+    !department ||
+    !date ||
+    !Building ||
+    !amount ||
+    !Receiver1 ||
+    !Receiver2 ||
+    !Receiver3
+  ) {
+    return res.status(400).send("Error: Missing required fields.");
+  }
+try {
+    const newDonation = new Donation({
+      name,
+      department,
+      date,
+      buildingFloor: Building,
+      amount,
+      Receiver1,
+      Receiver2,
+      Receiver3
+    });
+    
+    await newDonation.save();
+    console.log("Data added to MongoDB successfully.");
+    res.send("Data added to MongoDB successfully.");
+  } catch (err) {
+    console.error("Error adding data to MongoDB:", err);
+    res.status(500).send("Failed to add data to MongoDB.");
+  }
+});
+app.get("/get-donations",async(req,res)=>{
+  try{
+    const donations=await Donation.find();
+    res.json(donations);
+  }
+  catch(err){
+    console.error("error in reteiving",err);
+    res.status(500).send("failed to find");
+  }
+})
+
 //start the server
-const PORT = port_name||3000;
+const PORT = port_name || 3000;
 app.listen(PORT, () => {
   console.log("server is running " + PORT);
 });

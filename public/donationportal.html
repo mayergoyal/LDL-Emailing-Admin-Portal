@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Donation Records</title>
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-image: url("./images/donationjp.png");
+      }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+      }
+      input {
+        margin: 8px;
+      }
+      #donation-table{
+        opacity: 0;
+      }
+      button{
+        width: 200px;
+        height: auto;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Donation Records</h1>
+
+    <form id="donation-form">
+      <label>Name: <input type="text" id="name" required /></label><br />
+      <label>Department: <input type="text" id="department" required /></label
+      ><br />
+      <label>Date: <input type="text" id="date" required /></label><br />
+      <label
+        >Building & Floor:
+        <input type="text" id="buildingFloor" required /></label
+      ><br />
+      <label>Amount: <input type="text" id="amount" required /></label><br />
+      <label>Receiver 1: <input type="text" id="Receiver1" required /></label
+      ><br />
+      <label>Receiver 2: <input type="text" id="Receiver2" required /></label
+      ><br />
+      <label>Receiver 3: <input type="text" id="Receiver3" required /></label
+      ><br />
+      <button type="submit">Submit</button>
+    </form>
+
+    
+    <table id="donation-table">
+       
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Department</th>
+          <th>Date</th>
+          <th>Building & Floor</th>
+          <th>Amount</th>
+          <th>Receiver 1</th>
+          <th>Receiver 2</th>
+          <th>Receiver 3</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <button onclick="exportTableToCSV()">Export to CSV</button>
+    <script>
+      document
+        .getElementById("donation-form")
+        .addEventListener("submit", (e) => {
+          e.preventDefault();
+
+          const data = {
+            name: document.getElementById("name").value,
+            department: document.getElementById("department").value,
+            date: document.getElementById("date").value,
+            Building: document.getElementById("buildingFloor").value,
+            amount: document.getElementById("amount").value,
+            Receiver1: document.getElementById("Receiver1").value,
+            Receiver2: document.getElementById("Receiver2").value,
+            Receiver3: document.getElementById("Receiver3").value,
+          };
+
+          fetch("http://localhost:5500/add-to-mongo", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data),
+          })
+            .then((response) => {
+              if (!response.ok)
+                throw new Error("Failed to add data to MongoDB.");
+              return response.text();
+            })
+            .then((message) => {
+              alert(message);
+              fetchDonations(); // Refresh table
+            })
+            .catch((err) => alert("Error: " + err.message));
+        });
+
+      // Fetch and display donations
+      function fetchDonations() {
+        fetch("http://localhost:5500/get-donations")
+          .then((response) => response.json())
+          .then((data) => {
+            const tableBody = document.querySelector("#donation-table tbody");
+            tableBody.innerHTML = ""; // Clear the table
+            data.forEach((donation) => {
+              const row = `
+              <tr>
+                <td>${donation.name}</td>
+                <td>${donation.department}</td>
+                <td>${donation.date}</td>
+                <td>${donation.buildingFloor}</td>
+                <td>${donation.amount}</td>
+                <td>${donation.Receiver1}</td>
+                <td>${donation.Receiver2}</td>
+                <td>${donation.Receiver3}</td>
+              </tr>
+            `;
+              tableBody.innerHTML += row;
+            });
+          })
+          .catch((err) => console.error("Error fetching donations:", err));
+      }
+
+      // Initial fetch
+      fetchDonations();
+      function exportTableToCSV() {
+        const table = document.getElementById("donation-table");
+        let csv = [];
+        for (let row of table.rows) {
+          let cells = Array.from(row.cells).map((cell) => cell.textContent);
+          csv.push(cells.join(","));
+        }
+        const csvString = csv.join("\n");
+        const blob = new Blob([csvString], { type: "text/csv" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "donation_records.csv";
+        a.click();
+      }
+    </script>
+  </body>
+</html>
