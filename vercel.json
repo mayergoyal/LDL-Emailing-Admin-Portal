@@ -1,19 +1,10 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "index.js",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "index.html",
-      "use": "@vercel/static"
-    }
-  ],
+  "public": "public",
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "/index.js"
+      "destination": "/api/$1"
     },
     {
       "source": "/(.*)",
@@ -21,4 +12,3 @@
     }
   ]
 }
-

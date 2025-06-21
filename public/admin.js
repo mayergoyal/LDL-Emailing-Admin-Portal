@@ -68,7 +68,6 @@ const donationbutton = document.querySelector(".donationbutton");
 
 if (donationbutton) {
   donationbutton.addEventListener("click", function () {
-  
     const loginbody = document.querySelector(".loginbody");
     loginbody.style.opacity = "1";
     loginbody.innerHTML = `
@@ -120,17 +119,16 @@ if (donationbutton) {
 const attendancebutton = document.querySelector(".attendancebutton");
 
 if (attendancebutton) {
-  
   attendancebutton.addEventListener("click", function () {
     console.log("hmm m andar hu attendance button k");
-    
+
     const loginbody = document.querySelector(".loginbody");
     loginbody.style.opacity = "1";
     loginbody.innerHTML = `
 <div class="backfromlogin">❌</div>
         <h1>Login</h1>
          
-        <h3>Enter the Donation Team's password </h3>
+        <h3>Enter the Attendance Team's password </h3>
         <br>
         <input type='text' class='inputpass'/>
         <button class='submitbuttondonation'>
@@ -172,7 +170,7 @@ if (attendancebutton) {
 }
 
 //kaushambi...deatails
-const kaushambibutton=document.querySelector(".kaushambibutton");
+const kaushambibutton = document.querySelector(".kaushambibutton");
 if (kaushambibutton) {
   kaushambibutton.addEventListener("click", () => {
     const loginbody = document.querySelector(".loginbody");
@@ -181,7 +179,7 @@ if (kaushambibutton) {
 <div class="backfromlogin">❌</div>
         <h1>Login</h1>
          
-        <h3>Enter the Donation Team's password </h3>
+        <h3>Enter the Kaushambi Team's password </h3>
         <br>
         <input type='text' class='inputpass'/>
         <button class='submitbuttondonation'>
@@ -222,9 +220,8 @@ if (kaushambibutton) {
   console.error("kaushambi button not found in the DOM.");
 }
 
-
 //fortis...deatails
-const fortisbutton=document.querySelector(".fortisbutton");
+const fortisbutton = document.querySelector(".fortisbutton");
 if (fortisbutton) {
   fortisbutton.addEventListener("click", () => {
     const loginbody = document.querySelector(".loginbody");
@@ -233,7 +230,7 @@ if (fortisbutton) {
 <div class="backfromlogin">❌</div>
         <h1>Login</h1>
          
-        <h3>Enter the Donation Team's password </h3>
+        <h3>Enter the Fortis Team's password </h3>
         <br>
         <input type='text' class='inputpass'/>
         <button class='submitbuttondonation'>
@@ -274,7 +271,6 @@ if (fortisbutton) {
   console.error("fortisbutton not found in the DOM.");
 }
 
-
 //finance...deatails
 const financebutton = document.querySelector(".financebutton");
 if (financebutton) {
@@ -285,7 +281,7 @@ if (financebutton) {
 <div class="backfromlogin">❌</div>
         <h1>Login</h1>
          
-        <h3>Enter the Donation Team's password </h3>
+        <h3>Enter the Finance Team's password </h3>
         <br>
         <input type='text' class='inputpass'/>
         <button class='submitbuttondonation'>
